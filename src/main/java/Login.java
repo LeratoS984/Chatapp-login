@@ -63,4 +63,13 @@ public class Login {
                 && PASSWORD_DIGIT.matcher(password).matches()
                 && PASSWORD_SPECIAL.matcher(password).matches();
     }
-   
+    /**
+     * Checks that a cell number has an international code.
+     *
+     * @param cellPhoneNumber the cell number entered by the user
+     * @return true if the cell number is valid
+     */
+    public boolean checkCellPhoneNumber(String cellPhoneNumber) {
+        return cellPhoneNumber != null
+                && CELL_PHONE_PATTERN.matcher(cellPhoneNumber).matches();
+    }
