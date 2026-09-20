@@ -113,4 +113,66 @@ public class Login {
                 + "Cell number successfully captured." + System.lineSeparator()
                 + "Registration successful.";
     }
-    
+    /**
+     * Checks whether entered login details match the registered details.
+     *
+     * @param enteredUsername username entered during login
+     * @param enteredPassword password entered during login
+     * @return true if the login details are correct
+     */
+    public boolean loginUser(String enteredUsername, String enteredPassword) {
+        return registered
+                && username.equals(enteredUsername)
+                && password.equals(enteredPassword);
+    }
+    /**
+     * Returns a successful or failed login message.
+     *
+     * @param loginSuccessful the result returned by loginUser
+     * @return the correct login status message
+     */
+    public String returnLoginStatus(boolean loginSuccessful) {
+        if (loginSuccessful) {
+            return "Welcome " + firstName + ", " + lastName
+                    + " it is great to see you again.";
+        }
+
+        return "Username or password incorrect, please try again.";
+    }
+
+    public String getUsernameMessage(String username) {
+        if (checkUserName(username)) {
+            return "Username successfully captured.";
+        }
+
+        return "Username is not correctly formatted; please ensure that your username "
+                + "contains an underscore and is no more than five characters in length.";
+    }
+
+    public String getPasswordMessage(String password) {
+        if (checkPasswordComplexity(password)) {
+            return "Password successfully captured.";
+        }
+
+        return "Password is not correctly formatted; please ensure that the password contains "
+                + "at least eight characters, a capital letter, a number, and a special character.";
+    }
+
+    public String getCellPhoneMessage(String cellPhoneNumber) {
+        if (checkCellPhoneNumber(cellPhoneNumber)) {
+            return "Cell number successfully captured.";
+        }
+
+        return "Cell number is incorrectly formatted or does not contain an international code; "
+                + "please correct the number and try again.";
+    }
+
+    /**
+     * Checks whether a successful registration was completed.
+     *
+     * @return true when the account was successfully registered
+     */
+    public boolean isRegistered() {
+        return registered;
+    }
+}
