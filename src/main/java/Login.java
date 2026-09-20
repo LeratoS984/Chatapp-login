@@ -73,3 +73,44 @@ public class Login {
         return cellPhoneNumber != null
                 && CELL_PHONE_PATTERN.matcher(cellPhoneNumber).matches();
     }
+ /**
+     * Registers a user when all entered details are valid.
+     *
+     * @param username the new username
+     * @param password the new password
+     * @param cellPhoneNumber the user's international cell number
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @return the required registration message
+     */
+    public String registerUser(String username, String password,
+            String cellPhoneNumber, String firstName, String lastName) {
+
+        if (!checkUserName(username)) {
+            return "Username is not correctly formatted; please ensure that your username "
+                    + "contains an underscore and is no more than five characters in length.";
+        }
+
+        if (!checkPasswordComplexity(password)) {
+            return "Password is not correctly formatted; please ensure that the password contains "
+                    + "at least eight characters, a capital letter, a number, and a special character.";
+        }
+
+        if (!checkCellPhoneNumber(cellPhoneNumber)) {
+            return "Cell number is incorrectly formatted or does not contain an international code; "
+                    + "please correct the number and try again.";
+        }
+
+        this.username = username;
+        this.password = password;
+        this.cellPhoneNumber = cellPhoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        registered = true;
+
+        return "Username successfully captured." + System.lineSeparator()
+                + "Password successfully captured." + System.lineSeparator()
+                + "Cell number successfully captured." + System.lineSeparator()
+                + "Registration successful.";
+    }
+    
