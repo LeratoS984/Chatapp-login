@@ -50,5 +50,17 @@ public class Login {
         return username != null
                 && USERNAME_PATTERN.matcher(username).matches();
     }
-
+/**
+     * Checks that a password has the required complexity.
+     *
+     * @param password the password entered by the user
+     * @return true if the password is valid
+     */
+    public boolean checkPasswordComplexity(String password) {
+        return password != null
+                && password.length() >= 8
+                && PASSWORD_CAPITAL.matcher(password).matches()
+                && PASSWORD_DIGIT.matcher(password).matches()
+                && PASSWORD_SPECIAL.matcher(password).matches();
+    }
    
