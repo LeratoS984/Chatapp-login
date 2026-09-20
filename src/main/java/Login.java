@@ -7,6 +7,48 @@
  *
  * @author lerat
  */
+import java.util.regex.Pattern;
+
+/**
+ * Handles registration validation and user login for QuickChat.
+ */
 public class Login {
-    
-}
+
+    private static final Pattern USERNAME_PATTERN =
+            Pattern.compile("^(?=.{1,5}$).*_.*$");
+
+    private static final Pattern PASSWORD_CAPITAL =
+            Pattern.compile(".*[A-Z].*");
+
+    private static final Pattern PASSWORD_DIGIT =
+            Pattern.compile(".*\\d.*");
+
+    private static final Pattern PASSWORD_SPECIAL =
+            Pattern.compile(".*[^a-zA-Z0-9].*");
+
+    /*
+     * International-number regex reference:
+     * ITU-T Recommendation E.164:
+     * https://www.itu.int/rec/T-REC-E.164
+     */
+    private static final Pattern CELL_PHONE_PATTERN =
+            Pattern.compile("^\\+\\d{1,3}\\d{9}$");
+
+    private String username;
+    private String password;
+    private String cellPhoneNumber;
+    private String firstName;
+    private String lastName;
+    private boolean registered;
+    /**
+     * Checks that a username has an underscore and is no more than five characters.
+     *
+     * @param username the username entered by the user
+     * @return true if the username is valid
+     */
+    public boolean checkUserName(String username) {
+        return username != null
+                && USERNAME_PATTERN.matcher(username).matches();
+    }
+
+   
